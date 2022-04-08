@@ -48,7 +48,7 @@ const Home = () => {
 
                     {
                         product && product.map(product => (
-                            <Product product={product}></Product>
+                            <Product product={product} key={product._id}></Product>
                         ))
                     }
                 </div>
