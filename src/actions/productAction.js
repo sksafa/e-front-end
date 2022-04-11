@@ -11,8 +11,6 @@ import {
     CLEAR_ERRORS,
 } from '../constants/productConstants';
 
-
-
 export const getProduct = () => async (dispatch) =>{
     try{
         dispatch({type:ALL_PRODUCT_REQUEST});
@@ -39,7 +37,7 @@ export const getSingleProduct = (id) => async (dispatch) =>{
 
         dispatch({
             type: SINGLE_PRODUCT_SUCCESS,
-            payload:data,
+            payload:data.product,
         })
     } catch(error){
         dispatch({
@@ -48,8 +46,6 @@ export const getSingleProduct = (id) => async (dispatch) =>{
         })
     }
 }
-
-
 
 // clearing errors
 export const clearErrors = () => async (dispatch) =>{

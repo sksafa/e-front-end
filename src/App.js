@@ -5,6 +5,7 @@ import WebFont from "webfontloader"
 import Footer from "./component/layout/Footer/Footer.js";
 import Home from "./component/Home/Home.js"
 import ProductDetails from "./component/productDetails/ProductDetails.js"
+import './App.css'
 
 function App() {
 
