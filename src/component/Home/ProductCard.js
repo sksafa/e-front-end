@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component"
-import ReviewCard from '../productDetails/ReviewCard';
 
 
-const Product = ({ product }) => {
+
+
+const ProductCard = ({ product }) => {
     const options = {
         edit: false,
         color:"rgba(20,20,20,0.1)",
@@ -14,10 +15,8 @@ const Product = ({ product }) => {
         isHalf:true,
     
     }
-
     
     const imgPic = product.image[0];
-    console.log(imgPic);
     return (
         <Link className="productCard" to={`/product/${product._id}`}>
             <img src={imgPic.url} alt={product.name} />
@@ -30,4 +29,4 @@ const Product = ({ product }) => {
     );
 };
 
-export default Product;
+export default ProductCard;

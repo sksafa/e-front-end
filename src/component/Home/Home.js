@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
-// import {CgMouse} from "react-icons/all";
-import Product from "./Product.js"
+import {CgMouse} from "react-icons/all";
+import ProductCard from "./ProductCard.js"
 import MetaData from '../layout/MetaData.js';
 import './Home.css';
 import { getProduct } from '../../actions/productAction.js';
@@ -18,13 +18,10 @@ import Loader from '../layout/Loader/Loader'
 const Home = () => {
 
     const dispatch = useDispatch();
-    const { loading,error, products, productsCount } = useSelector((state) => state.products);
-    console.log("loaded product", products)
+    const { loading,error, products   } = useSelector((state) => state.products);
 
-    const { product } = products;
 
-    console.log("this si product", product,loading)
-
+    const { product} = products;
 
     useEffect(() => {
         dispatch(getProduct());
@@ -39,7 +36,7 @@ const Home = () => {
                     <p>Welcome to Ecommerce</p>
                     <h1>FIND AMAZING PRODUCT BELLOW</h1>
                     <a href="#container">
-                        <button>Scroll </button>
+                        <button>Scroll <CgMouse/> </button>
                     </a>
                 </div>
                 <h2 className="homeHeading">Feature Products</h2>
@@ -48,7 +45,7 @@ const Home = () => {
 
                     {
                         product && product.map(product => (
-                            <Product product={product} key={product._id}></Product>
+                            <ProductCard product={product} key={product._id}></ProductCard>
                         ))
                     }
                 </div>
