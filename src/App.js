@@ -7,6 +7,7 @@ import Home from "./component/Home/Home.js"
 import ProductDetails from "./component/Products/ProductDetails.js"
 import Products from "./component/Products/Products.js"
 import Search from "./component/Products/Search.js"
+import LoginSignUp from "./component/User/LoginSignUp.js";
 import './App.css'
 
 function App() {
@@ -28,7 +29,9 @@ function App() {
         <Route exact path="/product/:id" element={<ProductDetails/>} />
         <Route exact path="/products" element={<Products/>} />
         <Route  path="/products/:keyword" element={<Products/>} />
+        {/* <Route  path="/products/:category" element={<Products/>} /> */}
         <Route exact path="/search" element={<Search/>} />
+        <Route exact path="/login" element={<LoginSignUp/>} />
       </Routes>
 
       <Footer />

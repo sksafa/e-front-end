@@ -18,10 +18,7 @@ import Loader from '../layout/Loader/Loader'
 const Home = () => {
 
     const dispatch = useDispatch();
-    const { loading,error, products   } = useSelector((state) => state.products);
-
-
-    const { product} = products;
+    const { loading, error, products   } = useSelector((state) => state.products);
 
     useEffect(() => {
         dispatch(getProduct());
@@ -44,7 +41,7 @@ const Home = () => {
                     {/* <Product product ={product}></Product> */}
 
                     {
-                        product && product.map(product => (
+                        products && products.map(product => (
                             <ProductCard product={product} key={product._id}></ProductCard>
                         ))
                     }
