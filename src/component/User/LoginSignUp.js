@@ -20,7 +20,7 @@ const LoginSignUp = () => {
     const navigate =useNavigate();
     // const history = useHistory()
 
-    const {error, loading, isAuthenticated } = useSelector((state)=> state.user);
+    const {error, loading, isAuthenticatedUser } = useSelector((state)=> state.user);
 
 
     const loginTab = useRef(null);
@@ -44,6 +44,7 @@ const LoginSignUp = () => {
         e.preventDefault();
         dispatch(login(loginEmail,loginPassword))
         console.log("login is clicked", loginPassword, loginEmail)
+        // navigate("/products")
     }
     const registerSubmit = (e) => {
         e.preventDefault();
@@ -52,7 +53,7 @@ const LoginSignUp = () => {
         myForm.set("email", email);
         myForm.set("password", password);
         myForm.set("avatar", avatar);
-        
+
         dispatch(register(myForm));
     }
 
@@ -80,10 +81,10 @@ const LoginSignUp = () => {
             alert.error(error);
             dispatch(clearErrors());
         }
-        if(isAuthenticated){
+        if(isAuthenticatedUser){
             navigate("/products")
         }
-    },[dispatch, alert, error,navigate, isAuthenticated]);
+    },[dispatch, alert, error,navigate, isAuthenticatedUser]);
 
     const switchTabs = (e, tab) => {
         if (tab === "login") {
@@ -175,7 +176,7 @@ const LoginSignUp = () => {
                             </div>
 
                             <div id="registerImage">
-                                {/* <img src={avatarPreview} alt="Avatar Preview" /> */}
+                                <img src={avatarPreview} alt="Avatar Preview" />
                                 <input
                                     type="file"
                                     name="avatar"
