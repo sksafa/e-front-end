@@ -13,13 +13,14 @@ import store from "./store";
 import { loadUser } from "../src/actions/userAction";
 import UserOptions from "./component/layout/Header/UserOptions.js"
 import { useDispatch, useSelector } from "react-redux";
-import Profile from "./component/User/Profile.js"
+import Profile from "./component/User/Profile.js";
+import ProtectedRoute from "./component/Route/ProtectedRoute.js";
 
 function App() {
   const { isAuthenticatedUser, user } = useSelector(state => state.user)
   // const dispatch = useDispatch();
 
-  console.log(isAuthenticatedUser,"usyueyuqkswf", user)
+  console.log(isAuthenticatedUser, "usyueyuqkswf", user)
 
   React.useEffect(() => {
     WebFont.load({
@@ -33,9 +34,9 @@ function App() {
   return (
     <Router>
       <Header />
-      {isAuthenticatedUser &&  <UserOptions user={user} />}
+      {isAuthenticatedUser && <UserOptions user={user} />}
       <Routes>
-       
+
         <Route exact path="/" element={<Home />} />
         <Route exact path="/product/:id" element={<ProductDetails />} />
         <Route exact path="/products" element={<Products />} />
@@ -43,7 +44,10 @@ function App() {
         {/* <Route  path="/products/:category" element={<Products/>} /> */}
         <Route exact path="/search" element={<Search />} />
         <Route exact path="/login" element={<LoginSignUp />} />
-        <Route exact path="/account" element={<Profile />} />
+        <Route element={<ProtectedRoute />} >
+          <Route exact path="/account" element={<Profile />} />
+        </Route>
+
       </Routes>
 
       <Footer />
