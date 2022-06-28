@@ -15,6 +15,10 @@ import {
     LOGOUT_USER_SUCCESS,
     LOGOUT_USER_FAIL,
 
+    UPDATE_PROFILE_REQUEST,
+    UPDATE_PROFILE_SUCCESS,
+    UPDATE_PROFILE_FAIL,
+
     CLEAR_ERRORS,
 
 } from '../constants/userConstants';
@@ -44,7 +48,7 @@ export const register = (userData) => async (dispatch)=>{
     try {
         dispatch({type:REGISTER_REQUEST});
 
-        const config = {headers:{"content-type": "multipart/form-data"}};
+        const config = {headers:{"Content-Type": "multipart/form-data"}};
 
         const {data } = await axios.post(`http://localhost:5000/api/v2/registration`, userData,config );
         dispatch({type: REGISTER_SUCCESS, payload:data.user});
@@ -60,6 +64,7 @@ export const loadUser = () =>async (dispatch)=>{
         dispatch({type:LOAD_USER_REQUEST});
 
         const {data } = await axios.get( `http://localhost:5000/api/v2/me`);
+        console.log("load user", data)
         dispatch({type: LOAD_USER_SUCCESS, payload:data.user});
 
     } catch (error) {
@@ -78,6 +83,23 @@ export const logoutUser = () =>async (dispatch)=>{
     }
 }
 
+
+//register  user
+export const updateProfile = (userData) => async (dispatch)=>{
+    console.log("main datate ki pailam ? = ", userData)
+    try {
+        dispatch({type:UPDATE_PROFILE_REQUEST});
+
+        const config = {headers:{"Content-Type": "multipart/form-data"}};
+
+        const {data } = await axios.put(`http://localhost:5000/api/v2/me/update/info`, userData,config );
+        console.log("updated user data:--", data)
+        dispatch({type: UPDATE_PROFILE_SUCCESS, payload:data.success});
+
+    } catch (error) {
+        dispatch({type: UPDATE_PROFILE_FAIL, payload:error.response.data.message});
+    }
+}
 
 
 // clearing errors

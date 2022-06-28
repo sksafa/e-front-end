@@ -7,6 +7,16 @@ function ProtectedRoute(){
     return isAuthenticatedUser? <Outlet/> : <Navigate to="/login"/>
 }
 
+// function ProtectedRoute({ element, ...rest }) {
+//     const { loading, isAuthenticatedUser } = useSelector((state) => state.user);
+ 
+//     return (
+//       <Route
+//         {...rest}
+//         element={isAuthenticatedUser ? element : <Navigate to="/login" replace />}
+//       />
+//     );
+//   }
 
 // const ProtectedRoute = ({component: Component, ...rest}) => {
 //     const { loading, isAuthenticatedUser } = useSelector((state) => state.user);
